@@ -13,7 +13,12 @@ TTS_API_URLS = {
     "indictts": "http://27.111.72.61:3000/indictts"
 }
 
-def query_cred_chat_api(text: str, api_url: str = "http://27.111.72.61:5353/chat") -> str:
+# Mapping Chat bot engine names to their API URLs
+ChatBot_API_URLS = {
+    "old_rag": "http://27.111.72.61:5353/chat"
+}
+
+def query_cred_chat_api(text: str, chatbot_engine: str = "old_rag") -> str:
     """
     Sends the input text to the CRED chat API and returns the assistant's response.
 
@@ -24,6 +29,8 @@ def query_cred_chat_api(text: str, api_url: str = "http://27.111.72.61:5353/chat
     Returns:
     - str: Response from the assistant or error message.
     """
+    api_url = ChatBot_API_URLS.get(chatbot_engine)
+
     try:
         response = requests.post(api_url, json={"text": text})
         response.raise_for_status()
@@ -38,17 +45,26 @@ def query_cred_chat_api(text: str, api_url: str = "http://27.111.72.61:5353/chat
     except requests.exceptions.RequestException as e:
         return f"Request failed: {e}"
 
-def send_audio_to_server_new(file_path, api_url="http://27.111.72.61:10003/upload_file"):
+# Mapping ASR engine names to their API URLs
+ASR_API_URLS = {
+    "cred_asr": "http://27.111.72.61:10003/upload_file",
+    "kaldi_asr": "http://27.111.72.61:6001/transcribe"
+}
+
+def send_audio_to_server_new(file_path, asr_engine = 'cred_asr'):
     """
     Sends an existing WAV audio file to the server for processing and returns the concatenated transcription.
 
     Args:
         file_path (str): Path to the WAV audio file to send.
-        api_url (str): The server API endpoint.
+        asr_engine (str): The server API endpoint.
 
     Returns:
         str: Concatenated transcription text, or None if an error occurs.
     """
+
+    api_url = ASR_API_URLS.get(asr_engine)
+
     if not os.path.exists(file_path):
         print(f"[ERROR] File not found: {file_path}")
         return None
