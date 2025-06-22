@@ -15,10 +15,12 @@ TTS_API_URLS = {
 
 # Mapping Chat bot engine names to their API URLs
 ChatBot_API_URLS = {
-    "old_rag": "http://27.111.72.61:5353/chat"
+    "old_rag": "http://27.111.72.61:5353/chat",
+    "new_rag": "http://27.111.72.61:5051/chat"
 }
+_
 
-def query_cred_chat_api(text: str, chatbot_engine: str = "old_rag") -> str:
+def query_cred_chat_api(text: str, chatbot_engine: str = "new_rag") -> str:
     """
     Sends the input text to the CRED chat API and returns the assistant's response.
 
