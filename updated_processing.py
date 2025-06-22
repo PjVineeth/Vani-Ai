@@ -18,7 +18,7 @@ ChatBot_API_URLS = {
     "old_rag": "http://27.111.72.61:5353/chat",
     "new_rag": "http://27.111.72.61:5051/chat"
 }
-_
+
 
 def query_cred_chat_api(text: str, chatbot_engine: str = "new_rag") -> str:
     """
