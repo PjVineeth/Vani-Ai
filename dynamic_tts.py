@@ -2,10 +2,11 @@
 TTS_API_URLS = {
     "google": "http://27.111.72.61:9001/google_tts",
     "dia": "http://27.111.72.61:4000/tts_dia",
-    "indictts": "http://27.111.72.61:3000/indictts"
+    "indictts": "http://27.111.72.61:3000/indictts",
+    "piper":"http://27.111.72.61:5010/piper_tts"
 }
 
-def synthesize_and_play_audio(text, tts_engine="google"):
+def synthesize_and_play_audio(text, tts_engine="piper"):
     """
     Send text to the specified TTS engine API, get encoded audio, decode, and play it.
 

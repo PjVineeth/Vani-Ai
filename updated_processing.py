@@ -21,7 +21,7 @@ ChatBot_API_URLS = {
 }
 
 
-def query_cred_chat_api(text: str, chatbot_engine: str = "new_rag") -> str:
+def query_cred_chat_api(text: str, chatbot_engine: str = "old_rag") -> str:
     """
     Sends the input text to the CRED chat API and returns the assistant's response.
 
@@ -51,10 +51,11 @@ def query_cred_chat_api(text: str, chatbot_engine: str = "new_rag") -> str:
 # Mapping ASR engine names to their API URLs
 ASR_API_URLS = {
     "cred_asr": "http://27.111.72.61:10003/upload_file",
-    "kaldi_asr": "http://27.111.72.61:6001/transcribe"
+    "kaldi_asr": "http://27.111.72.61:6001/transcribe",
+    "proxy_asr": "http://27.111.72.61:9001/proxy_transcribe",
 }
 
-def send_audio_to_server_new(file_path, asr_engine = 'cred_asr'):
+def send_audio_to_server_new(file_path, asr_engine = 'proxy_asr'):
     """
     Sends an existing WAV audio file to the server for processing and returns the concatenated transcription.
 

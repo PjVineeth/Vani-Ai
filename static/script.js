@@ -70,7 +70,7 @@ startBtn.addEventListener('click', async () => {
     typingIndicator.className = 'message bot typing';
     typingIndicator.innerText = '🤖 is thinking...';
     asrText.appendChild(typingIndicator);
-    typingIndicator.scrollIntoView({ behavior: 'smooth' });
+    typingIndicator.scrollIntoView({ behavior: 'smooth'});
 
     micAnimation.style.display = 'block';
 
